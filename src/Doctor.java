@@ -1,6 +1,7 @@
 
-/** This class models the Doctor in the game. A Doctor has
- *  a position and can move to a new position.
+/**
+ * This class models the Doctor in the game. A Doctor has a position and can
+ * move to a new position.
  */
 public class Doctor {
 
@@ -13,7 +14,8 @@ public class Doctor {
      * @param theCol The column this Doctor starts at.
      */
     public Doctor(int theRow, int theCol) {
-
+        this.row = theRow;
+        this.col = theCol;
     }
 
     /**
@@ -29,6 +31,22 @@ public class Doctor {
      */
     public void move(int newRow, int newCol) {
 
+        // move to clicked spot unless clicked spot is more than 1 spot away
+        if (newRow == this.row - 1 || newRow == this.row + 1) {
+            this.row = newRow;
+            this.col = newCol;
+        } else if (newRow < this.row - 1 || newRow > this.row + 1) {
+            this.row = (int) (Math.random() * 12);
+            this.col = (int) (Math.random() * 12);
+        }
+
+        if (newCol == this.col - 1 || newCol == this.col + 1) {
+            this.row = newRow;
+            this.col = newCol;
+        } else if (newCol < this.col - 1 || newCol > this.col + 1) {
+            this.row = (int) (Math.random() * 12);
+            this.col = (int) (Math.random() * 12);
+        }
     }
 
     /**
@@ -37,7 +55,7 @@ public class Doctor {
      * @return This Doctor's row.
      */
     public int getRow() {
-
+        return this.row;
     }
 
     /**
@@ -46,7 +64,6 @@ public class Doctor {
      * @return This Doctor's column.
      */
     public int getCol() {
-
+        return this.col;
     }
-
 }
